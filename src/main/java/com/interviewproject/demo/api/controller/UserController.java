@@ -1,7 +1,7 @@
-package com.interviewproject.demo.controller;
+package com.interviewproject.demo.api.controller;
 
-import com.interviewproject.demo.controller._interface.CrudController;
-import com.interviewproject.demo.entity.User;
+import com.interviewproject.demo.api.controller._interface.CrudController;
+import com.interviewproject.demo.db.entity.User;
 import com.interviewproject.demo.service.UserService;
 import com.interviewproject.demo.service._abstract.CrudService;
 import org.springframework.web.bind.annotation.RequestMapping;

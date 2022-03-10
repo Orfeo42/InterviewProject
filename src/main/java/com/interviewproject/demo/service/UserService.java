@@ -1,8 +1,8 @@
 package com.interviewproject.demo.service;
 
 import com.interviewproject.demo.component.PasswordEncoder;
-import com.interviewproject.demo.entity.User;
-import com.interviewproject.demo.repository.UserRepository;
+import com.interviewproject.demo.db.entity.User;
+import com.interviewproject.demo.db.repository.UserRepository;
 import com.interviewproject.demo.service._abstract.CrudService;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Service;

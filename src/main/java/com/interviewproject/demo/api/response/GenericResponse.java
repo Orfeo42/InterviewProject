@@ -1,4 +1,4 @@
-package com.interviewproject.demo.response;
+package com.interviewproject.demo.api.response;
 
 public class GenericResponse<ResponseType> {
     

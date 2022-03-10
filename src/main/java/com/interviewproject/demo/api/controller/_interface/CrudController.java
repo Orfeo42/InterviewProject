@@ -1,9 +1,7 @@
-package com.interviewproject.demo.controller._interface;
+package com.interviewproject.demo.api.controller._interface;
 
 import com.interviewproject.demo.service._abstract.CrudService;
-import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

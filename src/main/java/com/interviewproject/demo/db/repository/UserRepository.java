@@ -1,6 +1,6 @@
-package com.interviewproject.demo.repository;
+package com.interviewproject.demo.db.repository;
 
-import com.interviewproject.demo.entity.User;
+import com.interviewproject.demo.db.entity.User;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;

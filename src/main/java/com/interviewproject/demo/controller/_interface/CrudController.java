@@ -1,41 +1,37 @@
 package com.interviewproject.demo.controller._interface;
 
+import com.interviewproject.demo.service._abstract.CrudService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
-public interface CrudController<Entity, ID> {
+public interface CrudController<EntityType, IdType> {
 
-    PagingAndSortingRepository<Entity, ID> getRepository();
+    CrudService<EntityType, IdType> getService();
 
     @GetMapping
-    default ResponseEntity<Page<Entity>> getList(){
-        return new ResponseEntity<>(getRepository().findAll(PageRequest.of(0, 50)), HttpStatus.OK);
+    default ResponseEntity<Page<EntityType>> getList(){
+        return new ResponseEntity<>(getService().getAll(), HttpStatus.OK);
     }
 
     @GetMapping(value = "{id}")
-    default ResponseEntity<Entity> getByID(@PathVariable ID id) {
-        return new ResponseEntity<>(getRepository().findById(id).orElse(null), HttpStatus.OK) ;
+    default ResponseEntity<EntityType> getByID(@PathVariable IdType id) {
+        return new ResponseEntity<>(getService().getByID(id), HttpStatus.OK) ;
     }
 
     @PutMapping(value = "{id}")
-    default ResponseEntity<Entity> editByID(@PathVariable ID id, @RequestBody @Valid Entity newEntity) {
-        Entity result = getRepository().findById(id).map(oldEntity -> {
-            BeanUtils.copyProperties(newEntity, oldEntity, "id");
-            return getRepository().save(oldEntity);
-        }).orElseGet(() -> getRepository().save(newEntity));
-        return new ResponseEntity<>(result, HttpStatus.OK);
+    default ResponseEntity<EntityType> editByID(@PathVariable IdType id, @Valid @RequestBody EntityType newEntity) {
+        return new ResponseEntity<>(getService().editByID(id,newEntity), HttpStatus.OK);
     }
 
     @PostMapping
-    default ResponseEntity<Entity> addNew(@RequestBody @Valid Entity newEntity) {
-        return new ResponseEntity<>(getRepository().save(newEntity), HttpStatus.OK);
+    default ResponseEntity<EntityType> addNew(@RequestBody @Valid EntityType newEntity) {
+        return new ResponseEntity<>(getService().addNew(newEntity), HttpStatus.OK);
     }
 
 }

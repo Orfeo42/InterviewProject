@@ -1,5 +1,6 @@
 package com.interviewproject.demo.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,8 +14,8 @@ import javax.validation.constraints.Size;
 @Getter
 @Setter
 @ToString
-@Entity(name = "app_user")
 @NoArgsConstructor
+@Entity(name = "app_user")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_generator")
@@ -22,22 +23,21 @@ public class User {
     @Column(nullable = false)
     private Long id;
 
-    @NotBlank(message = "Cannot be null")
-    private String name;
-
-    @NotBlank(message = "Cannot be null")
+    @NotBlank
     private String firstName;
 
     private String lastName;
 
-    @NotBlank(message = "Cannot be null")
-    @Email(message = "Must be a valid email")
+    @NotBlank
+    @Email
     private String email;
 
-    @NotBlank(message = "Cannot be null")
+    @NotBlank
+    @Size(min = 10)
+    @JsonIgnore
     private String password;
 
-    @Size(max= 255, message = "Size must not be greater then 255")
+    @Size(max= 255)
     private String address;
 
 }

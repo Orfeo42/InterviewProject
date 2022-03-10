@@ -2,7 +2,8 @@ package com.interviewproject.demo.controller;
 
 import com.interviewproject.demo.controller._interface.CrudController;
 import com.interviewproject.demo.entity.User;
-import com.interviewproject.demo.repository.UserRepository;
+import com.interviewproject.demo.service.UserService;
+import com.interviewproject.demo.service._abstract.CrudService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -10,15 +11,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("user")
 public class UserController implements CrudController<User, Long> {
 
-    private final UserRepository repository;
+    private final UserService service;
 
-    public UserController(UserRepository repository) {
-        this.repository = repository;
+    public UserController(UserService service) {
+        this.service = service;
     }
 
     @Override
-    public UserRepository getRepository() {
-        return repository;
+    public CrudService<User, Long> getService() {
+        return service;
     }
-
 }

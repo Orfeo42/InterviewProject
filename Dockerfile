@@ -1,4 +1,3 @@
-FROM openjdk:11
-EXPOSE 8080
-ADD target/userApi.jar userApi.jar
-ENTRYPOINT ["java","-jar","/userApi.jar"]
+FROM openjdk:17-alpine
+ADD targer/user-api.jar user-api.jar
+ENTRYPOINT ["java", "-jar", "user-api.jar"]

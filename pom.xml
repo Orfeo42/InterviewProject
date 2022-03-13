@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.InterviewProject</groupId>
-    <artifactId>userApi</artifactId>
+    <artifactId>user-api</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>InterviewProject</name>
     <description>InterviewProject</description>
@@ -65,6 +65,6 @@
         <!--VALIDATION-->
     </dependencies>
     <build>
-        <finalName>userApi</finalName>
+        <finalName>user-api</finalName>
     </build>
 </project>

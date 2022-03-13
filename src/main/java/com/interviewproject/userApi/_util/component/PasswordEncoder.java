@@ -1,4 +1,4 @@
-package com.interviewproject.demo.component;
+package com.interviewproject.userApi._util.component;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;

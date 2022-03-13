@@ -1,4 +1,4 @@
-package com.interviewproject.demo;
+package com.interviewproject.userApi;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

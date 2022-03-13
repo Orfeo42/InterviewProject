@@ -1,4 +1,4 @@
-package com.interviewproject.demo.exception;
+package com.interviewproject.userApi.api.exception;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;

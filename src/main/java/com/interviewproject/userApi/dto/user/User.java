@@ -1,4 +1,4 @@
-package com.interviewproject.demo.db.entity;
+package com.interviewproject.userApi.dto.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;

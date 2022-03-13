@@ -1,6 +1,6 @@
-package com.interviewproject.demo.api.controller._interface;
+package com.interviewproject.userApi._basicClass;
 
-import com.interviewproject.demo.service._abstract.CrudService;
+import com.interviewproject.userApi.api.exception.ApiRequestException;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -8,17 +8,17 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
-public interface CrudController<EntityType, IdType> {
+public interface CrudController<EntityType, IdType, RequestType extends BasicRequest> {
 
-    CrudService<EntityType, IdType> getService();
+    CrudService<EntityType, IdType, RequestType> getService();
 
     @GetMapping
-    default ResponseEntity<Page<EntityType>> getList(){
-        return new ResponseEntity<>(getService().getAll(), HttpStatus.OK);
+    default ResponseEntity<Page<EntityType>> getList(@Valid @RequestBody RequestType request){
+        return new ResponseEntity<>(getService().getAll(request), HttpStatus.OK);
     }
 
     @GetMapping(value = "{id}")
-    default ResponseEntity<EntityType> getByID(@PathVariable IdType id) {
+    default ResponseEntity<EntityType> getByID(@PathVariable IdType id) throws ApiRequestException {
         return new ResponseEntity<>(getService().getByID(id), HttpStatus.OK) ;
     }
 

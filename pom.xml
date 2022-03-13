@@ -9,12 +9,12 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.InterviewProject</groupId>
-    <artifactId>Demo</artifactId>
+    <artifactId>userApi</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>InterviewProject</name>
     <description>InterviewProject</description>
     <properties>
-        <java.version>11</java.version>
+        <java.version>17</java.version>
     </properties>
     <dependencies>
 
@@ -55,8 +55,16 @@
             <artifactId>postgresql</artifactId>
             <scope>runtime</scope>
         </dependency>
+        <dependency>
+            <groupId>org.jetbrains</groupId>
+            <artifactId>annotations</artifactId>
+            <version>23.0.0</version>
+            <scope>compile</scope>
+        </dependency>
 
         <!--VALIDATION-->
     </dependencies>
-
+    <build>
+        <finalName>userApi</finalName>
+    </build>
 </project>

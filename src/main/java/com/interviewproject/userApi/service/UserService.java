@@ -1,14 +1,14 @@
-package com.interviewproject.demo.service;
+package com.interviewproject.userApi.service;
 
-import com.interviewproject.demo.component.PasswordEncoder;
-import com.interviewproject.demo.db.entity.User;
-import com.interviewproject.demo.db.repository.UserRepository;
-import com.interviewproject.demo.service._abstract.CrudService;
-import org.springframework.data.repository.PagingAndSortingRepository;
+import com.interviewproject.userApi._basicClass.CrudService;
+import com.interviewproject.userApi._util.component.PasswordEncoder;
+import com.interviewproject.userApi.api.user.UserRequest;
+import com.interviewproject.userApi.dto.user.User;
+import com.interviewproject.userApi.dto.user.UserRepository;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserService extends CrudService<User, Long> {
+public class UserService extends CrudService<User, Long, UserRequest> {
 
     private final UserRepository repository;
 
@@ -20,7 +20,7 @@ public class UserService extends CrudService<User, Long> {
     }
 
     @Override
-    protected PagingAndSortingRepository<User, Long> getRepository() {
+    protected UserRepository getRepository() {
         return repository;
     }
 

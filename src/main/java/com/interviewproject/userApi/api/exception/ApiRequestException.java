@@ -1,4 +1,4 @@
-package com.interviewproject.demo.exception;
+package com.interviewproject.userApi.api.exception;
 
 public class ApiRequestException extends Exception{
     public ApiRequestException(String message) {

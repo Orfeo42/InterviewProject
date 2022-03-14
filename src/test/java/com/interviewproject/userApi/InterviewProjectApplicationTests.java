@@ -1,6 +1,5 @@
 package com.interviewproject.userApi;
 
-import com.interviewproject.userApi._basicClass.GenericSpecification;
 import com.interviewproject.userApi.api.exception.ApiRequestException;
 import com.interviewproject.userApi.api.user.UserRequest;
 import com.interviewproject.userApi.dto.user.User;
@@ -13,7 +12,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +29,7 @@ class InterviewProjectApplicationTests {
 
     @Test
     public void getUsersTest() {
-        /*List<User> usrList = new ArrayList<>();
+        List<User> usrList = new ArrayList<>();
         for (int i = 1; i<5; i++) {
             usrList.add(
                 new User(
@@ -47,7 +45,7 @@ class InterviewProjectApplicationTests {
         UserRequest request = new UserRequest();
         Page<User> userPage = new PageImpl(usrList);
         Mockito.when(repository.findAll()).thenReturn(usrList);
-        assertEquals(4, service.getAll().size());*/
+        assertEquals(4, service.getAll().size());
     }
     @Test
     void testCreate() throws ApiRequestException {

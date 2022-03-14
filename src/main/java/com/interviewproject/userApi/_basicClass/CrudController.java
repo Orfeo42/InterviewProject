@@ -17,12 +17,12 @@ public interface CrudController<EntityType extends BasicEntity<IdType>, IdType, 
         return new ResponseEntity<>(getService().getAllByRequest(request), HttpStatus.OK);
     }
 
-    @GetMapping(value = "{id}")
+    @GetMapping(value = "/{id}")
     default ResponseEntity<EntityType> getById(@PathVariable IdType id) throws ApiRequestException {
         return new ResponseEntity<>(getService().getById(id), HttpStatus.OK) ;
     }
 
-    @PutMapping(value = "{id}")
+    @PutMapping(value = "/{id}")
     default ResponseEntity<EntityType> editById(@PathVariable IdType id, @Valid @RequestBody EntityType newEntity) {
         return new ResponseEntity<>(getService().editById(id,newEntity), HttpStatus.OK);
     }
@@ -32,7 +32,7 @@ public interface CrudController<EntityType extends BasicEntity<IdType>, IdType, 
         return new ResponseEntity<>(getService().addNew(newEntity), HttpStatus.OK);
     }
 
-    @DeleteMapping(value = "{id}")
+    @DeleteMapping(value = "/{id}")
     default ResponseEntity<String> deleteById(@PathVariable IdType id) throws ApiRequestException {
         getService().deleteById(id);
         return new ResponseEntity<>("Elemento Eliminato Correttamente", HttpStatus.OK);

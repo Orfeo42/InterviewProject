@@ -1,6 +1,7 @@
 package com.interviewproject.userApi.dto.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.interviewproject.userApi._basicClass.BasicEntity;
 import lombok.*;
 
@@ -33,7 +34,7 @@ public class User extends BasicEntity<Long> {
 
     @NotBlank
     @Size(min = 10)
-    @JsonIgnore
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
     @Size(max= 255)

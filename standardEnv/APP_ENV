@@ -1,4 +1,4 @@
-DB_HOST=localhost
+DB_HOST=user-api-db
 DB_PORT=5432
 DB_NAME=user_api_db
 DB_USER=app_user

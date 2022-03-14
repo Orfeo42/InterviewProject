@@ -2,20 +2,22 @@ package com.interviewproject.userApi.service;
 
 import com.interviewproject.userApi._basicClass.CrudService;
 import com.interviewproject.userApi._util.component.PasswordEncoder;
+import com.interviewproject.userApi.api.exception.ApiRequestException;
 import com.interviewproject.userApi.api.user.UserRequest;
 import com.interviewproject.userApi.dto.user.User;
 import com.interviewproject.userApi.dto.user.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserService extends CrudService<User, Long, UserRequest> {
 
-    private final UserRepository repository;
+    @Autowired
+    private UserRepository repository;
 
     private final PasswordEncoder passwordEncoder;
 
-    public UserService(UserRepository repository, PasswordEncoder passwordEncoder) {
-        this.repository = repository;
+    public UserService(PasswordEncoder passwordEncoder) {
         this.passwordEncoder = passwordEncoder;
     }
 
@@ -25,13 +27,13 @@ public class UserService extends CrudService<User, Long, UserRequest> {
     }
 
     @Override
-    public User editByID(Long id, User newEntity) {
+    public User editById(Long id, User newEntity) {
         newEntity.setPassword(passwordEncoder.encode(newEntity.getPassword()));
-        return super.editByID(id,newEntity);
+        return super.editById(id,newEntity);
     }
 
     @Override
-    public User addNew(User newEntity) {
+    public User addNew(User newEntity) throws ApiRequestException {
         newEntity.setPassword(passwordEncoder.encode(newEntity.getPassword()));
         return super.addNew(newEntity);
     }

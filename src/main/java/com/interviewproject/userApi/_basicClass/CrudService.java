@@ -5,28 +5,31 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
-public abstract class CrudService<EntityType, IdType, RequestType extends BasicRequest> {
+public abstract class CrudService<EntityType extends BasicEntity<IdType>, IdType, RequestType extends BasicRequest> {
 
     protected abstract GenericRepository<EntityType, IdType> getRepository();
 
-    public Page<EntityType> getAll(RequestType request){
+    public List<EntityType> getAll(){
+        return (List<EntityType>) getRepository().findAll();
+    }
+    public Page<EntityType> getAllByRequest(RequestType request){
         return getRepository().findAll(
             new GenericSpecification<>(request),
             PageRequest.of(request.getPageNo(), request.getPageSize(), request.getSort())
         );
     }
 
-    public EntityType getByID(IdType id) throws ApiRequestException {
+    public EntityType getById(IdType id) throws ApiRequestException {
         return getRepository().findById(id).orElseThrow(() -> new ApiRequestException("Nessun elemento trovato per l'id selezionato"));
     }
 
     @Transactional
-    public EntityType editByID(IdType id, EntityType newEntity) {
+    public EntityType editById(IdType id, EntityType newEntity) {
         return getRepository().findById(id).map(oldEntity -> {
             BeanUtils.copyProperties(newEntity, oldEntity, "id");
             return getRepository().save(oldEntity);
@@ -34,7 +37,14 @@ public abstract class CrudService<EntityType, IdType, RequestType extends BasicR
     }
 
     @Transactional
-    public EntityType addNew(EntityType newEntity) {
+    public EntityType addNew(EntityType newEntity) throws ApiRequestException {
+        if (newEntity.getId() != null) throw new ApiRequestException("id non può essere valorizzato per l'inserimento");
         return getRepository().save(newEntity);
+    }
+
+    @Transactional
+    public void deleteById(IdType id) throws ApiRequestException {
+        EntityType item = getRepository().findById(id).orElseThrow(() -> new ApiRequestException("Nessun elemento trovato per l'id selezionato"));
+        getRepository().delete(item);
     }
 }

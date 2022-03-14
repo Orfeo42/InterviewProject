@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("user/")
+@RequestMapping("/user/")
 public class UserController implements CrudController<User, Long, UserRequest> {
 
     private final UserService service;

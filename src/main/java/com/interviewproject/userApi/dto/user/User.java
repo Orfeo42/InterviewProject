@@ -1,10 +1,8 @@
 package com.interviewproject.userApi.dto.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import com.interviewproject.userApi._basicClass.BasicEntity;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -15,8 +13,9 @@ import javax.validation.constraints.Size;
 @Setter
 @ToString
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity(name = "app_user")
-public class User {
+public class User extends BasicEntity<Long> {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_generator")
     @SequenceGenerator(name="user_generator", sequenceName = "seq_user", allocationSize=10)

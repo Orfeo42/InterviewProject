@@ -5,4 +5,4 @@ import org.springframework.data.repository.NoRepositoryBean;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 @NoRepositoryBean
-public interface GenericRepository<EntityType,IdType> extends PagingAndSortingRepository<EntityType,IdType>, JpaSpecificationExecutor<EntityType> {}
+public interface GenericRepository<EntityType extends BasicEntity<IdType>,IdType> extends PagingAndSortingRepository<EntityType,IdType>, JpaSpecificationExecutor<EntityType> {}

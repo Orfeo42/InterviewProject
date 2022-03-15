@@ -31,7 +31,7 @@ public class GenericSpecification<EntityType, RequestType extends BasicRequest> 
         try {
             List<Predicate> predicates = getPredicates(root,criteriaBuilder);
             return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
-        } catch (Exception e) {}
+        } catch (Exception ignored) {}
         return null;
     }
 
@@ -41,7 +41,13 @@ public class GenericSpecification<EntityType, RequestType extends BasicRequest> 
             GenericFieldFilter<?> filter = (GenericFieldFilter<?>) method.invoke(request);
             if (filter!= null){
                 String fieldName = getFieldName(method.getName());
-                if (validateSingleFilter(filter.getEq())) predicates.add(builder.equal(root.get(fieldName),filter.getEq()));
+                if (validateSingleFilter(filter.getEq())) {
+                    if (filter.getEq() instanceof String) {
+                        predicates.add(builder.like(root.get(fieldName), filter.getEq()+""));
+                    }else{
+                        predicates.add(builder.equal(root.get(fieldName), filter.getEq()));
+                    }
+                }
                 if (validateSingleFilter(filter.getNe())) predicates.add(builder.notEqual(root.get(fieldName),filter.getNe()));
                 if (validateSingleFilter(filter.getIn())) predicates.add(root.get(fieldName).in(filter.getIn()));
                 if (validateSingleFilter(filter.getNin())) predicates.add(root.get(fieldName).in(filter.getNin()).not());

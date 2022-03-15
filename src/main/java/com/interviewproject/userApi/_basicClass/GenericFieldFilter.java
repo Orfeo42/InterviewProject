@@ -8,18 +8,18 @@ import java.util.List;
 @Getter
 @Setter
 public class GenericFieldFilter<FieldType> {
-    private FieldType eq;
-    private FieldType ne;
-    private FieldType lt;
-    private FieldType lte;
-    private FieldType gt;
-    private FieldType gte;
-    private List<FieldType> in;
-    private List<FieldType> nin;
-    private FieldType c;
-    private FieldType ci;
-    private FieldType s;
-    private FieldType si;
-    private FieldType e;
-    private FieldType ei;
+    private FieldType eq;//EQUAL
+    private FieldType ne;//NOT EQUAL
+    private FieldType lt;//LESS THAN
+    private FieldType lte;//LESS THAN EQUAL
+    private FieldType gt;//GREATER THEN
+    private FieldType gte;//GREATER THEN EQUAL
+    private List<FieldType> in;//IN
+    private List<FieldType> nin;//NOT IN
+    private FieldType c;//CONTAINS
+    private FieldType ci;//CONTAINS IGNORE CASE
+    private FieldType s;//START
+    private FieldType si;//START IGNORE CASE
+    private FieldType e;//END
+    private FieldType ei;//END IGNORE CASE
 }

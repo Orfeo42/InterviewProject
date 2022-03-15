@@ -6,19 +6,18 @@ import com.interviewproject.userApi.api.exception.ApiRequestException;
 import com.interviewproject.userApi.api.user.UserRequest;
 import com.interviewproject.userApi.dto.user.User;
 import com.interviewproject.userApi.dto.user.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserService extends CrudService<User, Long, UserRequest> {
 
-    @Autowired
-    private UserRepository repository;
+    private final UserRepository repository;
 
     private final PasswordEncoder passwordEncoder;
 
-    public UserService(PasswordEncoder passwordEncoder) {
+    public UserService(PasswordEncoder passwordEncoder, UserRepository repository) {
         this.passwordEncoder = passwordEncoder;
+        this.repository = repository;
     }
 
     @Override
